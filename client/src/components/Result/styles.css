@@ -1,0 +1,21 @@
+.result-flex{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    min-height: 86vh;
+    align-items: center;
+}
+.result-container{
+    border: 1px solid var(--grey);
+    min-height: calc(100vh - 20rem);
+    min-width: calc(100vw - 50rem);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 2rem;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 30px;
+    font-weight: 600;
+    border-radius: 10px;
+}
