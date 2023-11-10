@@ -36,7 +36,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5001/question/getAll`);
+      const res = await axios.get(`https://quiz-app-6q5s.onrender.com/question/getAll`);
       console.log(res);
       setAllQuestions(res.data);
     } catch (error) {
@@ -57,7 +57,7 @@ function App() {
       questionDetails.type = type;
       console.log(questionDetails);
       const res = await axios.post(
-        `http://localhost:5001/question/add`,
+        `https://quiz-app-6q5s.onrender.com/question/add`,
         questionDetails
       );
       alert(res.data.message);
