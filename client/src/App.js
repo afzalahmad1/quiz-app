@@ -17,9 +17,12 @@ import Result from "./components/Result";
 
 function App() {
   const [allQuestions, setAllQuestions] = useState([]);
+  const [paper, setPaper] = useState({});
   const [minute, setMinute] = useState();
   const [second, setSecond] = useState();
   const [reload, setReload] = useState(true);
+
+  // state for adding questions
   const [questionDetails, setQuestionDetails] = useState({
     question: "",
     optionA: "",
@@ -31,14 +34,17 @@ function App() {
   const [type, setType] = useState("single");
 
   useEffect(() => {
+    // for After new Question adding reloadin te page
     fetchData();
+
   }, [reload]);
 
   const fetchData = async () => {
     try {
       const res = await axios.get(`https://quiz-app-6q5s.onrender.com/question/getAll`);
-      console.log(res);
+      console.log(res.data[0]);
       setAllQuestions(res.data);
+      setPaper(res.data[0])
     } catch (error) {
       console.log(error);
     }
@@ -80,12 +86,12 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Student setMinute={setMinute} setSecond={setSecond} />}
+          element={<Student setMinute={setMinute} paper={paper} setSecond={setSecond} fetchData={fetchData} allQuestions={allQuestions}/>}
         />
         <Route path="/admin" element={<Login />} />
         <Route
           path="/dashboard"
-          element={<AdminPage allQuestions={allQuestions} />}
+          element={<AdminPage allQuestions={allQuestions} reload={reload} setReload={setReload}/>}
         />
         <Route
           path="/quiz"
@@ -96,6 +102,8 @@ function App() {
               second={second}
               setSecond={setSecond}
               setMinute={setMinute}
+              paper={paper}
+              setPaper={setPaper}
             />
           }
         />

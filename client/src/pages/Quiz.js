@@ -7,7 +7,7 @@ import Free from "../components/Quiz/PaperType/Free";
 import Sorting from "../components/Quiz/PaperType/Sorting";
 import Blank from "../components/Quiz/PaperType/Blank";
 import { useNavigate } from "react-router-dom";
-const Quiz = ({ allQuestions, minute, second, setSecond, setMinute }) => {
+const Quiz = ({ allQuestions, minute, second, setSecond, setMinute ,paper,setPaper}) => {
   const [marks, setMarks] = useState(0);
   const [solvedQuestionStatus, setSolvedQuestionStatus] = useState([]);
 
@@ -17,7 +17,7 @@ const Quiz = ({ allQuestions, minute, second, setSecond, setMinute }) => {
   const [sortingAnswer, setSortingAnswer] = useState([]);
   const [blankAnswer, setBlankAnswer] = useState("");
   const [flag, setFlag] = useState(false);
-  const [paper, setPaper] = useState({});
+
   const [quesNo, setQuesNo] = useState(0);
   const navigate = useNavigate()
 
@@ -40,7 +40,6 @@ const Quiz = ({ allQuestions, minute, second, setSecond, setMinute }) => {
   }
   const handleTimer = () => {
     // setPaper(()=>allQuestions[quesNo]);
-
     
     // console.log(time);
     let secCount = second;
@@ -80,7 +79,7 @@ const Quiz = ({ allQuestions, minute, second, setSecond, setMinute }) => {
   };
 
   useEffect(() => {
-    setQuesNo(quesNo);
+    // setQuesNo(quesNo);
     // setPaper(() => allQuestions[quesNo]);
     console.log("min", minute);
     console.log("min", second);
@@ -89,7 +88,6 @@ const Quiz = ({ allQuestions, minute, second, setSecond, setMinute }) => {
 
   useEffect(() => {
     setPaper(() => allQuestions[quesNo]);
-
     clearCheckedRadio();
     setStudentAnswer("");
     setStudentMultipleAnswer([]);
@@ -99,6 +97,8 @@ const Quiz = ({ allQuestions, minute, second, setSecond, setMinute }) => {
 
     let checkBtn = document.getElementById("check");
     console.log(checkBtn);
+
+    //For disabling the button
     for (let val = 0; val < solvedQuestionStatus.length; val++) {
       if (
         checkBtn &&
@@ -234,7 +234,9 @@ const Quiz = ({ allQuestions, minute, second, setSecond, setMinute }) => {
   if (!allQuestions || !paper) {
     return (
       <h1 style={{ textAlign: "center" }}>
-        Please Add Questions from Admin Section!!
+        {console.log("allQ",allQuestions)}
+        {console.log("paper",paper)}
+        Please Wait It will takes around 50 sec on first Load.....!!
       </h1>
     );
   }

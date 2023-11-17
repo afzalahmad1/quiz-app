@@ -1,9 +1,21 @@
 import React from "react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const AdminPage = ({allQuestions}) => {
+const AdminPage = ({allQuestions,reload,setReload}) => {
   const navigate = useNavigate();
+  const handleDelete = async (id)=>{
+    try {
+      const res = await axios.delete(`http://localhost:5001/question/delete/${id}`)
+      console.log(res);
+      alert(res.data.message)
+      setReload(!reload)
+    } catch (error) {
+      console.log("error",error);
+    }
+
+  }
   return (
     <div>
       <div className="home-container-flex">
@@ -22,6 +34,7 @@ const AdminPage = ({allQuestions}) => {
             <th>Option D</th>
             <th>Answer</th>
             <th>Type</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -37,6 +50,8 @@ const AdminPage = ({allQuestions}) => {
                   <td>{question.optionD}</td>
                   <td>{question.answer}</td>
                   <td>{question.type}</td>
+                  <td onClick={()=>handleDelete(question._id)}>delete</td>
+
                 </tr>
               )
             })

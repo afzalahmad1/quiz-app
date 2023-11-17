@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Student = ({setMinute,setSecond}) => {
+const Student = ({setMinute,setSecond,allQuestions,fetchData,paper}) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     name: "",
@@ -16,6 +16,8 @@ const Student = ({setMinute,setSecond}) => {
   const min = JSON.parse(localStorage.getItem("min"));
   const sec = JSON.parse(localStorage.getItem("sec"));
   useEffect(()=>{
+    fetchData();
+    console.log("Student",allQuestions);
     if(min){
       console.log("local Min");
       setMinute(()=>min)
@@ -45,6 +47,16 @@ const Student = ({setMinute,setSecond}) => {
       alert("Please Enter correct details")
     }
   };
+
+  if (!allQuestions || !paper) {
+    return (
+      <h1 style={{ textAlign: "center" }}>
+        {console.log("Sttt--allQ",allQuestions)}
+        {console.log("Stt--paper",paper)}
+        Please Wait It will takes around 50 sec on first Load.....!!
+      </h1>
+    );
+  }
   return (
     <div className="form">
       <div className="container">

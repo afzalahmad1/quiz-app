@@ -41,5 +41,16 @@ const getAllQuestions = async (req,res)=>{
         res.send(error)
     }
 }
-
-export {addQuestion,getAllQuestions};
+const deleteQuestion = async(req,res)=>{
+  try {
+    const id = req.params.id;
+    console.log(id);
+    await Question.findByIdAndDelete({_id:id})
+    res.send({message:"Question is deleted"})
+  } catch (error) {
+    console.log(error);
+    res.send({message:"server error",
+  error:error})
+  }
+}
+export {addQuestion,getAllQuestions,deleteQuestion};
