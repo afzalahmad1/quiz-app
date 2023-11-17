@@ -29,9 +29,7 @@
     padding: 8px;
   }
   
-  #questions tr:nth-child(even){background-color: var(--darkgrey);}
-  
-  #questions tr:hover {background-color: var(--grey);}
+  #questions tr:hover {background-color: rgb(36, 33, 33)}
   
   #questions th {
     padding-top: 12px;
