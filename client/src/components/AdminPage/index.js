@@ -7,7 +7,7 @@ const AdminPage = ({allQuestions,reload,setReload}) => {
   const navigate = useNavigate();
   const handleDelete = async (id)=>{
     try {
-      const res = await axios.delete(`http://localhost:5001/question/delete/${id}`)
+      const res = await axios.delete(`https://quiz-app-dkw1.onrender.com/question/delete/${id}`)
       console.log(res);
       alert(res.data.message)
       setReload(!reload)

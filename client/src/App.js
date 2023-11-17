@@ -41,8 +41,8 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`https://quiz-app-6q5s.onrender.com/question/getAll`);
-      console.log(res.data[0]);
+      const res = await axios.get(`https://quiz-app-dkw1.onrender.com/question/getAll`);
+      console.log(res.data);
       setAllQuestions(res.data);
       setPaper(res.data[0])
     } catch (error) {
@@ -63,7 +63,7 @@ function App() {
       questionDetails.type = type;
       console.log(questionDetails);
       const res = await axios.post(
-        `https://quiz-app-6q5s.onrender.com/question/add`,
+        `https://quiz-app-dkw1.onrender.com/question/add`,
         questionDetails
       );
       alert(res.data.message);
